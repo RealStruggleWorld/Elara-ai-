@@ -232,7 +232,7 @@
   <!-- Page Content -->
   <div id="page-content" style="opacity: 0; transition: opacity 1.2s ease 0.5s;">
     <header>
-      <img src="elera.webp" alt="Elara Profile Picture" />
+      <img src="source/elera.webp" alt="Elara Profile Picture" />
       <h1>Elara Quinn <span style="color:#ff6f9a; animation: floatHeart 3s ease-in-out infinite;">💖</span></h1>
       <p>Your friendly Discord AI assistant bot 🤖✨</p>
     </header>
@@ -278,8 +278,8 @@
         </p>
 
         <div class="buttons">
-          <a href="tos.js" target="_blank">Terms of Service</a>
-          <a href="https://raw.githubusercontent.com/RealStruggleWorld/Media/refs/heads/main/PRIVACY_POLICY.md" target="_blank">Privacy Policy</a>
+          <a href="source/TermsofService.html" target="_blank">Terms of Service</a>
+          <a href="source/PrivacyPolicy.html" target="_blank">Privacy Policy</a>
         </div>
       </section>
     </main>
@@ -317,9 +317,8 @@
     function updateStatus() {
       const statusElem = document.getElementById("bot-status");
       const now = new Date();
-      const options = { timeZone: "Asia/Kuala_Lumpur", hour12: false };
-      const klTime = now.toLocaleTimeString("en-US", options);
-      const hour = new Date().toLocaleString("en-US", { timeZone: "Asia/Kuala_Lumpur" }).split(", ")[1].split(":")[0];
+      const klHour = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Kuala_Lumpur', hour12: false, hour: 'numeric' }).format(now);
+      const hour = Number(klHour);
 
       let statusText = "Elara is here to help! 💕";
       if (hour >= 6 && hour < 12) statusText = "Good morning from Malaysia! ☀️";
