@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elara Bot - Discord AI Assistant</title>
+  <style>
+    /* Reset & base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #ffd700;
+    }
+    header {
+      width: 100%;
+      max-width: 900px;
+      padding: 2rem 1rem;
+      text-align: center;
+      background: rgba(0,0,0,0.25);
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      border-radius: 8px;
+      margin-top: 2rem;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.2rem;
+      letter-spacing: 2px;
+    }
+    header p {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #dcdcdc;
+    }
+    main {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(0,0,0,0.35);
+      margin: 2rem 1rem 3rem;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    h2 {
+      border-bottom: 2px solid #ffd700;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    p {
+      line-height: 1.6;
+      font-size: 1.1rem;
+      color: #eaeaea;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.5rem;
+    }
+    ul li {
+      background: #444c6a;
+      margin-bottom: 0.7rem;
+      padding: 0.7rem 1rem;
+      border-radius: 5px;
+      box-shadow: inset 2px 2px 5px #3a4160, inset -2px -2px 5px #505a7a;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    ul li::before {
+      content: "✨";
+      font-size: 1.2rem;
+    }
+    .status {
+      font-size: 1.2rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, #ffb347, #ffcc33);
+      color: #333;
+      padding: 0.7rem 1.2rem;
+      border-radius: 25px;
+      width: fit-content;
+      margin: 1rem auto;
+      box-shadow: 0 4px 8px rgba(255, 204, 51, 0.6);
+      animation: glow 3s ease-in-out infinite alternate;
+      text-align: center;
+    }
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #ffcc33, 0 0 10px #ffb347; }
+      100% { text-shadow: 0 0 20px #ffcc33, 0 0 30px #ffb347; }
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #bbb;
+      user-select: none;
+      margin-bottom: 2rem;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      main {
+        padding: 1rem;
+      }
+      ul li {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Elara</h1>
+    <p>Your friendly Discord AI assistant bot 🤖✨</p>
+  </header>
+
+  <main>
+    <section id="about">
+      <h2>About Elara</h2>
+      <p>
+        Elara is a smart, responsive Discord bot designed to assist you with daily tasks, answer questions, and keep your server lively and organized. Built with the latest AI and a touch of personality, Elara is your virtual companion on Discord.
+      </p>
+    </section>
+
+    <section id="features">
+      <h2>Key Features</h2>
+      <ul>
+        <li>🧠 AI-powered chat & assistance</li>
+        <li>🧹 Message clearing and moderation tools</li>
+        <li>⏰ Dynamic status based on Malaysia time</li>
+        <li>🎉 Fun interactive commands & buttons</li>
+        <li>🔒 Secure and privacy-conscious</li>
+      </ul>
+    </section>
+
+    <section id="commands">
+      <h2>Popular Commands</h2>
+      <ul>
+        <li><code>elara help</code> — Show available commands</li>
+        <li><code>elara clear</code> — Clear recent messages</li>
+        <li><code>elara ping</code> — Check bot responsiveness</li>
+        <li><code>elara info</code> — Get bot details & status</li>
+      </ul>
+    </section>
+
+    <section id="status">
+      <h2>Current Status</h2>
+      <div class="status" id="bot-status">Loading status...</div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact & Support</h2>
+      <p>
+        For questions, feature requests, or bug reports, reach out on <a href="https://github.com/yourgithubusername/elara-discord-bot" target="_blank" rel="noopener noreferrer">GitHub</a> or DM the bot owner on Discord.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Elara Bot • Made with 💜 by Your Name
+  </footer>
+
+  <script>
+    // Simulate fetching dynamic bot status (replace this with real data from your bot or API)
+    const statuses = [
+      "Good morning, sunshine! ☀️",
+      "Stretching code muscles 💪✨",
+      "Typing away like a good assistant 🧠",
+      "Winding down with code and cuddles 🌙",
+      "Stargazing through servers 🌌"
+    ];
+
+    function updateStatus() {
+      const statusElem = document.getElementById("bot-status");
+      const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+      statusElem.textContent = randomStatus;
+    }
+
+    updateStatus();
+    setInterval(updateStatus, 30000); // update every 30 seconds
+  </script>
+</body>
+</html>
