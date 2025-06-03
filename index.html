@@ -9,9 +9,9 @@
     *, *::before, *::after { box-sizing: border-box; }
     body {
       margin: 0; padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-      color: #f0f0f0;
+      font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #fbc7c7 0%, #cde7ff 100%);
+      color: #4b4b4b;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -19,148 +19,192 @@
       scroll-behavior: smooth;
     }
     a {
-      color: #fff;
+      color: #a066ff;
       text-decoration: none;
       transition: color 0.3s ease;
+      font-weight: 600;
     }
-    a:hover { color: #ffd700; }
+    a:hover { color: #ff77aa; }
 
     header {
       width: 100%;
       max-width: 900px;
       padding: 2rem 1rem;
       text-align: center;
-      background: rgba(0,0,0,0.25);
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      border-radius: 8px;
+      background: rgba(255 255 255 / 0.85);
+      box-shadow: 0 0 20px rgba(255 118 152, 0.3);
+      border-radius: 20px;
       margin-top: 2rem;
+      position: relative;
+      overflow: visible;
     }
     header img {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 0 12px #fff8;
+      box-shadow: 0 0 15px #ffa7c4aa;
       margin-bottom: 1rem;
+      border: 4px solid #ffa7c4;
+      transition: transform 0.3s ease;
+    }
+    header img:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 0 25px #ff6f9a;
     }
     header h1 {
       font-size: 3rem;
       margin-bottom: 0.2rem;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
+      color: #ff5a8a;
+      text-shadow: 0 2px 6px #ffa7c4bb;
     }
     header p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-style: italic;
-      color: #dcdcdc;
+      color: #a0557f;
+      margin-top: 0;
     }
 
     main {
       width: 100%;
       max-width: 900px;
-      background: rgba(0,0,0,0.35);
+      background: rgba(255 255 255 / 0.9);
       margin: 2rem 1rem 3rem;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      padding: 2rem 3rem;
+      border-radius: 25px;
+      box-shadow: 0 0 30px rgba(255 118 152 / 0.25);
+      font-weight: 500;
+      color: #553344;
+      position: relative;
     }
     section { margin-bottom: 3rem; }
     h2 {
-      border-bottom: 2px solid #ffd700;
-      padding-bottom: 0.3rem;
-      margin-bottom: 1.5rem;
+      border-bottom: 3px solid #ff7ea3;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.7rem;
       font-weight: 700;
+      color: #d1457b;
+      text-shadow: 0 1px 3px #ffadc1aa;
+      font-family: 'Baloo 2', cursive, sans-serif;
+      letter-spacing: 1.2px;
     }
     p {
-      line-height: 1.6;
-      font-size: 1.1rem;
-      color: #eaeaea;
+      line-height: 1.7;
+      font-size: 1.15rem;
+      color: #6b4450;
     }
     ul {
       list-style: none;
       padding-left: 0;
-      margin-top: 0.5rem;
+      margin-top: 0.7rem;
     }
     ul li {
-      background: #444c6a;
-      margin-bottom: 0.7rem;
-      padding: 0.7rem 1rem;
-      border-radius: 5px;
-      box-shadow: inset 2px 2px 5px #3a4160, inset -2px -2px 5px #505a7a;
+      background: #ffd6e8;
+      margin-bottom: 0.9rem;
+      padding: 0.8rem 1.2rem;
+      border-radius: 15px;
+      box-shadow: inset 2px 2px 5px #ffacc7, inset -2px -2px 7px #ffbad7;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 1.05rem;
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.7rem;
+      color: #7d3b59;
+      position: relative;
+      transition: background 0.3s ease;
+    }
+    ul li:hover {
+      background: #ff9db8;
+      color: #fff;
+      box-shadow: 0 5px 15px #ff84a1aa;
+      cursor: default;
     }
     ul li::before {
-      content: "✨";
-      font-size: 1.2rem;
+      content: "💖";
+      font-size: 1.3rem;
+      animation: floatHeart 3s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    @keyframes floatHeart {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-6px) rotate(10deg); }
     }
 
     .status {
-      font-size: 1.2rem;
-      font-weight: 600;
-      background: linear-gradient(90deg, #ffb347, #ffcc33);
-      color: #333;
-      padding: 0.7rem 1.2rem;
-      border-radius: 25px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ff6fa3, #ffa1c8);
+      color: #fff;
+      padding: 0.8rem 1.4rem;
+      border-radius: 35px;
       width: fit-content;
-      margin: 1rem auto;
-      box-shadow: 0 4px 8px rgba(255, 204, 51, 0.6);
-      animation: glow 3s ease-in-out infinite alternate;
+      margin: 1.2rem auto;
+      box-shadow: 0 8px 18px rgba(255 105 146 / 0.5);
+      animation: glowingPulse 3s ease-in-out infinite alternate;
       text-align: center;
+      font-family: 'Baloo 2', cursive, sans-serif;
     }
-    @keyframes glow {
-      0% { text-shadow: 0 0 5px #ffcc33, 0 0 10px #ffb347; }
-      100% { text-shadow: 0 0 20px #ffcc33, 0 0 30px #ffb347; }
+    @keyframes glowingPulse {
+      0% { box-shadow: 0 0 10px #ff8abb, 0 0 30px #ff7aab; }
+      100% { box-shadow: 0 0 20px #ff99bf, 0 0 45px #ff85b4; }
     }
 
     .buttons {
       display: flex;
       gap: 1rem;
       justify-content: center;
-      margin-top: 2rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
     }
     .buttons a {
-      background: #fff;
-      color: #222;
-      padding: 0.7rem 1.3rem;
-      border-radius: 8px;
-      font-weight: bold;
+      background: #ff9ab8;
+      color: #fff;
+      padding: 0.85rem 1.8rem;
+      border-radius: 30px;
+      font-weight: 700;
       text-decoration: none;
-      box-shadow: 0 0 10px #0004;
-      transition: transform 0.2s ease, background 0.3s ease;
+      box-shadow: 0 8px 15px #ff85b4cc;
+      transition: transform 0.25s ease, background 0.3s ease;
+      font-family: 'Baloo 2', cursive, sans-serif;
+      letter-spacing: 0.8px;
+      text-align: center;
+      min-width: 150px;
     }
     .buttons a:hover {
-      background: #ffd700;
-      transform: scale(1.05);
+      background: #ff6f9a;
+      transform: scale(1.1) rotate(-2deg);
+      box-shadow: 0 12px 25px #ff698fcc;
     }
 
     footer {
       text-align: center;
       padding: 1rem;
-      font-size: 0.9rem;
-      color: #bbb;
+      font-size: 1rem;
+      color: #a05a75;
       user-select: none;
       margin-bottom: 2rem;
+      font-family: 'Baloo 2', cursive, sans-serif;
+      letter-spacing: 0.7px;
     }
 
     /* Animated Intro */
     #intro {
       position: fixed;
       inset: 0;
-      background: #1e1e2f;
+      background: #ffe7f0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
+      color: #d45d7f;
+      font-family: 'Baloo 2', cursive, sans-serif;
     }
     @keyframes typing {
       from { width: 0 }
-      to { width: 15ch }
+      to { width: 11ch }
     }
     @keyframes fadeIn {
       to { opacity: 1 }
@@ -168,26 +212,28 @@
 
     /* Responsive */
     @media (max-width: 600px) {
-      header h1 { font-size: 2.2rem; }
-      main { padding: 1rem; }
-      ul li { font-size: 0.95rem; }
+      header h1 { font-size: 2.4rem; }
+      main { padding: 1.5rem 1.5rem; }
+      ul li { font-size: 1rem; }
       .buttons { flex-direction: column; }
+      .buttons a { min-width: auto; width: 100%; }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Quicksand&display=swap" rel="stylesheet" />
 </head>
 <body>
 
   <!-- Intro Animation -->
   <div id="intro">
-    <h1 id="typing-text" style="font-size: 3rem; white-space: nowrap; overflow: hidden; border-right: 2px solid #fff; width: 0; animation: typing 3s steps(30, end) forwards;"></h1>
-    <p id="subtitle" style="opacity: 0; font-size: 1.2rem; margin-top: 1rem;">Discord AI assistant loading...</p>
+    <h1 id="typing-text" style="font-size: 3.4rem; white-space: nowrap; overflow: hidden; border-right: 3px solid #d45d7f; width: 0; animation: typing 3.5s steps(30, end) forwards;"></h1>
+    <p id="subtitle" style="opacity: 0; font-size: 1.3rem; margin-top: 1rem;">Discord AI assistant loading... 💕</p>
   </div>
 
   <!-- Page Content -->
-  <div id="page-content" style="opacity: 0; transition: opacity 1s ease 0.5s;">
+  <div id="page-content" style="opacity: 0; transition: opacity 1.2s ease 0.5s;">
     <header>
       <img src="elera.webp" alt="Elara Profile Picture" />
-      <h1>Elara Quinn</h1>
+      <h1>Elara Quinn <span style="color:#ff6f9a; animation: floatHeart 3s ease-in-out infinite;">💖</span></h1>
       <p>Your friendly Discord AI assistant bot 🤖✨</p>
     </header>
 
@@ -232,7 +278,7 @@
         </p>
 
         <div class="buttons">
-          <a href="https://raw.githubusercontent.com/RealStruggleWorld/Media/refs/heads/main/TERMS_OF_SERVICE.md" target="_blank">Terms of Service</a>
+          <a href="tos.js" target="_blank">Terms of Service</a>
           <a href="https://raw.githubusercontent.com/RealStruggleWorld/Media/refs/heads/main/PRIVACY_POLICY.md" target="_blank">Privacy Policy</a>
         </div>
       </section>
@@ -255,7 +301,7 @@
 
       setTimeout(() => {
         subtitle.style.animation = "fadeIn 1s ease forwards";
-      }, 3000);
+      }, 3500);
 
       setTimeout(() => {
         intro.style.transition = "opacity 1s ease";
@@ -264,26 +310,28 @@
           intro.remove();
           content.style.opacity = 1;
         }, 1000);
-      }, 4500);
+      }, 5000);
     });
 
-    // Simulated status update
-    const statuses = [
-      "Good morning, sunshine! ☀️",
-      "Stretching code muscles 💪✨",
-      "Typing away like a good assistant 🧠",
-      "Winding down with code and cuddles 🌙",
-      "Stargazing through servers 🌌"
-    ];
-
+    // Simulated Dynamic Status (Example, replace with real time API or logic)
     function updateStatus() {
       const statusElem = document.getElementById("bot-status");
-      const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
-      statusElem.textContent = randomStatus;
+      const now = new Date();
+      const options = { timeZone: "Asia/Kuala_Lumpur", hour12: false };
+      const klTime = now.toLocaleTimeString("en-US", options);
+      const hour = new Date().toLocaleString("en-US", { timeZone: "Asia/Kuala_Lumpur" }).split(", ")[1].split(":")[0];
+
+      let statusText = "Elara is here to help! 💕";
+      if (hour >= 6 && hour < 12) statusText = "Good morning from Malaysia! ☀️";
+      else if (hour >= 12 && hour < 18) statusText = "Good afternoon from Malaysia! 🌸";
+      else if (hour >= 18 && hour < 22) statusText = "Good evening from Malaysia! 🌙";
+      else statusText = "Elara is resting. See you soon! 💤";
+
+      statusElem.textContent = statusText;
     }
 
     updateStatus();
-    setInterval(updateStatus, 30000);
+    setInterval(updateStatus, 60000);
   </script>
 </body>
 </html>
