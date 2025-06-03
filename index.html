@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Elara Bot - Discord AI Assistant</title>
   <style>
-    /* Reset & base */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
+    /* Reset & Base */
+    *, *::before, *::after { box-sizing: border-box; }
     body {
       margin: 0; padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -25,9 +23,8 @@
       text-decoration: none;
       transition: color 0.3s ease;
     }
-    a:hover {
-      color: #ffd700;
-    }
+    a:hover { color: #ffd700; }
+
     header {
       width: 100%;
       max-width: 900px;
@@ -37,6 +34,14 @@
       box-shadow: 0 0 15px rgba(0,0,0,0.5);
       border-radius: 8px;
       margin-top: 2rem;
+    }
+    header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 12px #fff8;
+      margin-bottom: 1rem;
     }
     header h1 {
       font-size: 3rem;
@@ -48,6 +53,7 @@
       font-style: italic;
       color: #dcdcdc;
     }
+
     main {
       width: 100%;
       max-width: 900px;
@@ -57,9 +63,7 @@
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0,0,0,0.6);
     }
-    section {
-      margin-bottom: 3rem;
-    }
+    section { margin-bottom: 3rem; }
     h2 {
       border-bottom: 2px solid #ffd700;
       padding-bottom: 0.3rem;
@@ -92,6 +96,7 @@
       content: "✨";
       font-size: 1.2rem;
     }
+
     .status {
       font-size: 1.2rem;
       font-weight: 600;
@@ -109,6 +114,28 @@
       0% { text-shadow: 0 0 5px #ffcc33, 0 0 10px #ffb347; }
       100% { text-shadow: 0 0 20px #ffcc33, 0 0 30px #ffb347; }
     }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .buttons a {
+      background: #fff;
+      color: #222;
+      padding: 0.7rem 1.3rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 0 10px #0004;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+    .buttons a:hover {
+      background: #ffd700;
+      transform: scale(1.05);
+    }
+
     footer {
       text-align: center;
       padding: 1rem;
@@ -117,77 +144,130 @@
       user-select: none;
       margin-bottom: 2rem;
     }
+
+    /* Animated Intro */
+    #intro {
+      position: fixed;
+      inset: 0;
+      background: #1e1e2f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 15ch }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1 }
+    }
+
     /* Responsive */
     @media (max-width: 600px) {
-      header h1 {
-        font-size: 2.2rem;
-      }
-      main {
-        padding: 1rem;
-      }
-      ul li {
-        font-size: 0.95rem;
-      }
+      header h1 { font-size: 2.2rem; }
+      main { padding: 1rem; }
+      ul li { font-size: 0.95rem; }
+      .buttons { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Elara Quinn</h1>
-    <p>Your friendly Discord AI assistant bot 🤖✨</p>
-    <div style="margin-top: 1rem;">
-      <img src="elera.webp" alt="Elara Bot Avatar" style="width: 120px; height: 120px; border-radius: 50%; box-shadow: 0 0 10px #000;" />
-    </div>
-  </header>
 
-  <main>
-    <section id="about">
-      <h2>About Elara</h2>
-      <p>
-        Elara is a smart, responsive Discord bot designed to assist you with daily tasks, answer questions, and keep your server lively and organized. Built with the latest AI and a touch of personality, Elara is your virtual companion on Discord.
-      </p>
-    </section>
+  <!-- Intro Animation -->
+  <div id="intro">
+    <h1 id="typing-text" style="font-size: 3rem; white-space: nowrap; overflow: hidden; border-right: 2px solid #fff; width: 0; animation: typing 3s steps(30, end) forwards;"></h1>
+    <p id="subtitle" style="opacity: 0; font-size: 1.2rem; margin-top: 1rem;">Discord AI assistant loading...</p>
+  </div>
 
-    <section id="features">
-      <h2>Key Features</h2>
-      <ul>
-        <li>🧠 AI-powered chat & assistance</li>
-        <li>🧹 Message clearing and moderation tools</li>
-        <li>⏰ Dynamic status based on Malaysia time</li>
-        <li>🎉 Fun interactive commands & buttons</li>
-        <li>🔒 Secure and privacy-conscious</li>
-      </ul>
-    </section>
+  <!-- Page Content -->
+  <div id="page-content" style="opacity: 0; transition: opacity 1s ease 0.5s;">
+    <header>
+      <img src="elera.webp" alt="Elara Profile Picture" />
+      <h1>Elara Quinn</h1>
+      <p>Your friendly Discord AI assistant bot 🤖✨</p>
+    </header>
 
-    <section id="commands">
-      <h2>Popular Commands</h2>
-      <ul>
-        <li><code>elara help</code> — Show available commands</li>
-        <li><code>elara clear</code> — Clear recent messages</li>
-        <li><code>elara ping</code> — Check bot responsiveness</li>
-        <li><code>elara info</code> — Get bot details & status</li>
-      </ul>
-    </section>
+    <main>
+      <section id="about">
+        <h2>About Elara</h2>
+        <p>
+          Elara is a smart, responsive Discord bot designed to assist you with daily tasks, answer questions, and keep your server lively and organized. Built with the latest AI and a touch of personality, Elara is your virtual companion on Discord.
+        </p>
+      </section>
 
-    <section id="status">
-      <h2>Current Status</h2>
-      <div class="status" id="bot-status">Loading status...</div>
-    </section>
+      <section id="features">
+        <h2>Key Features</h2>
+        <ul>
+          <li>🧠 AI-powered chat & assistance</li>
+          <li>🧹 Message clearing and moderation tools</li>
+          <li>⏰ Dynamic status based on Malaysia time</li>
+          <li>🎉 Fun interactive commands & buttons</li>
+          <li>🔒 Secure and privacy-conscious</li>
+        </ul>
+      </section>
 
-    <section id="contact">
-      <h2>Contact & Support</h2>
-      <p>
-        For questions, feature requests, or bug reports, reach out on <a href="https://github.com/yourgithubusername/elara-discord-bot" target="_blank" rel="noopener noreferrer">GitHub</a> or DM the bot owner on Discord.
-      </p>
-    </section>
-  </main>
+      <section id="commands">
+        <h2>Popular Commands</h2>
+        <ul>
+          <li><code>elara help</code> — Show available commands</li>
+          <li><code>elara clear</code> — Clear recent messages</li>
+          <li><code>elara ping</code> — Check bot responsiveness</li>
+          <li><code>elara info</code> — Get bot details & status</li>
+        </ul>
+      </section>
 
-  <footer>
-    &copy; 2025 Elara Bot • Made with 💜 by Dr. Rinn
-  </footer>
+      <section id="status">
+        <h2>Current Status</h2>
+        <div class="status" id="bot-status">Loading status...</div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact & Support</h2>
+        <p>
+          For questions, feature requests, or bug reports, reach out on <a href="https://github.com/RealStruggleWorld/elara-discord-bot" target="_blank" rel="noopener noreferrer">GitHub</a> or DM the bot owner on Discord.
+        </p>
+
+        <div class="buttons">
+          <a href="https://raw.githubusercontent.com/RealStruggleWorld/Media/refs/heads/main/TERMS_OF_SERVICE.md" target="_blank">Terms of Service</a>
+          <a href="https://raw.githubusercontent.com/RealStruggleWorld/Media/refs/heads/main/PRIVACY_POLICY.md" target="_blank">Privacy Policy</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      &copy; 2025 Elara Bot • Made with 💜 by Dr. Rinn
+    </footer>
+  </div>
 
   <script>
-    // Simulate fetching dynamic bot status (replace this with real data from your bot or API)
+    // Typing Intro Logic
+    document.addEventListener("DOMContentLoaded", () => {
+      const subtitle = document.getElementById("subtitle");
+      const intro = document.getElementById("intro");
+      const content = document.getElementById("page-content");
+      const typingText = document.getElementById("typing-text");
+
+      typingText.textContent = "Elara Quinn";
+
+      setTimeout(() => {
+        subtitle.style.animation = "fadeIn 1s ease forwards";
+      }, 3000);
+
+      setTimeout(() => {
+        intro.style.transition = "opacity 1s ease";
+        intro.style.opacity = 0;
+        setTimeout(() => {
+          intro.remove();
+          content.style.opacity = 1;
+        }, 1000);
+      }, 4500);
+    });
+
+    // Simulated status update
     const statuses = [
       "Good morning, sunshine! ☀️",
       "Stretching code muscles 💪✨",
@@ -203,7 +283,7 @@
     }
 
     updateStatus();
-    setInterval(updateStatus, 30000); // update every 30 seconds
+    setInterval(updateStatus, 30000);
   </script>
 </body>
 </html>
